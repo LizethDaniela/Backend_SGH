@@ -3,6 +3,7 @@ import { Mongoose } from "mongoose";
 import { createModel, IUser, User } from "../model/UserModel";
 import UserRepository from "../repositories/UserRepository";
 
+
 class UserController {
   private userRepository: UserRepository;
   constructor(mongoose: Mongoose) {

@@ -12,17 +12,19 @@ class MateriasController {
   public async create(request: Request, response: Response) {
     //body
     let { semestre, subject, sigla } = request.body;
-    
     const resultmat = await this.materiasRepository.create({ semestre, subject, sigla });
     response.status(201).json({ serverResponse: resultmat });
   }
   public update(request: Request, response: Response) {}
+
   public async get(request: Request, response: Response) {
     const resultmat = await this.materiasRepository.find({});
     response.status(201).json({ serverResponse: resultmat });
   }
-  public delete(request: Request, response: Response) {}
-  public login(request: Request, response: Response) {}
-  public singOut(request: Request, response: Response) {}
+  public async delete(request: Request, response: Response) {
+    const { id } = request.params;
+    const result = await this.materiasRepository.delete(id);
+    response.status(200).json({ serverResponse: result });
+  }
 }
 export default MateriasController;

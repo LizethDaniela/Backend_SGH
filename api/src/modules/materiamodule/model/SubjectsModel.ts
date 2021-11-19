@@ -1,4 +1,4 @@
-import { Mongoose, Schema } from "mongoose";
+import { Mongoose, Schema, Document } from "mongoose";
 
 export interface ISubjects {
     semestre?: string;

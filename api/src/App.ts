@@ -3,10 +3,13 @@ import dotenv from "dotenv";
 import mongoose, { mongo, Mongoose } from "mongoose";
 import cors from "cors";
 import UserModule from "./modules/usermodule/init";
+import SubjectModule from "./modules/materiamodule/init";
+import StudentModule from "./modules/studentusermodule/init";
 
 if (process.env.NODE_ENV == "development") {
     dotenv.config();
 }
+
 class App {
     private app: Express;
     private port: number;
@@ -46,6 +49,8 @@ class App {
     private startModules() {
         console.log("Load Modules!");
         new UserModule(`/${this.apiversion}`, ["user", "materias"], this);
+        new SubjectModule(`/${this.apiversion}`, this);
+        new StudentModule(`/${this.apiversion}`, this);
     }
     public getApp(): Express {
         return this.app;
