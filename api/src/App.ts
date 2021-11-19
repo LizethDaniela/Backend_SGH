@@ -45,7 +45,7 @@ class App {
     }
     private startModules() {
         console.log("Load Modules!");
-        new UserModule(`/${this.apiversion}`, ["user", "materias", "singin"], this);
+        new UserModule(`/${this.apiversion}`, ["user", "materias"], this);
     }
     public getApp(): Express {
         return this.app;
