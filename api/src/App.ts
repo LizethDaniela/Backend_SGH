@@ -1,7 +1,7 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import mongoose, { mongo, Mongoose } from "mongoose";
-
+import cors from "cors";
 import UserModule from "./modules/usermodule/init";
 
 if (process.env.NODE_ENV == "development") {
@@ -24,6 +24,7 @@ class App {
     private configure() {
         this.app.use(express.json());
         this.app.use(express.urlencoded());
+        this.app.use(cors());
     }
     private configureDatabase() {
         const dataBaseName = process.env.DB_NAME;
@@ -44,7 +45,7 @@ class App {
     }
     private startModules() {
         console.log("Load Modules!");
-        new UserModule(`/${this.apiversion}`, ["user", "materias"], this);
+        new UserModule(`/${this.apiversion}`, ["user", "materias", "singin"], this);
     }
     public getApp(): Express {
         return this.app;

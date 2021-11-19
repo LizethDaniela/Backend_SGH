@@ -1,36 +1,33 @@
 import { Request, Response } from "express";
 import { Mongoose } from "mongoose";
-import { createModel, IUser, User } from "../model/UserModel";
-import UserRepository from "../repositories/UserRepository";
+import { createModel } from "../model/SinginModel";
+import SinginRepository from "../repositories/SinginRepository";
 
-class UserController {
-  private userRepository: UserRepository;
+class SinginController {
+  private singinRepository: SinginRepository;
   constructor(mongoose: Mongoose) {
-    this.userRepository = new UserRepository(createModel(mongoose));
+    this.singinRepository = new SinginRepository(createModel(mongoose));
   }
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { name, email, password } = request.body;
+    let { username } = request.body;
     
-    const result = await this.userRepository.create({ name, email, password });
+    const result = await this.singinRepository.create({ username });
     response.status(201).json({ serverResponse: result });
   }
   //method UPDATE
   public update(request: Request, response: Response) {}
   //method GET
   public async get(request: Request, response: Response) {
-    const result = await this.userRepository.find({});
+    const result = await this.singinRepository.find({});
     response.status(201).json({ serverResponse: result });
   }
   //method DELETE
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
-    const result = await this.userRepository.delete(id);
+    const result = await this.singinRepository.delete(id);
     response.status(200).json({ serverResponse: result });
   }
-  //Login
-  public async login(request: Request, response: Response) {}
-  public singOut(request: Request, response: Response) {}
 }
-export default UserController;
+export default SinginController;
