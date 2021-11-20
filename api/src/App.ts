@@ -5,6 +5,7 @@ import cors from "cors";
 import UserModule from "./modules/usermodule/init";
 import SubjectModule from "./modules/materiamodule/init";
 import StudentModule from "./modules/studentusermodule/init";
+import TeacherModule from "./modules/teacherusermodule/init";
 
 if (process.env.NODE_ENV == "development") {
     dotenv.config();
@@ -51,6 +52,7 @@ class App {
         new UserModule(`/${this.apiversion}`, ["user", "materias"], this);
         new SubjectModule(`/${this.apiversion}`, this);
         new StudentModule(`/${this.apiversion}`, this);
+        new TeacherModule(`/${this.apiversion}`, this);
     }
     public getApp(): Express {
         return this.app;

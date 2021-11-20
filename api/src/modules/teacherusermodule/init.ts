@@ -1,9 +1,9 @@
 import App from "../../App";
 import Routes from "./routes";
-class StudentModule {
+class TeacherModule {
     constructor(routePath: string, app: App) {
-        console.log("Load Student Module");
+        console.log("Load Teacher Module");
         const routes: Routes = new Routes(routePath, app);
     }
 }
-export default StudentModule;
+export default TeacherModule;
