@@ -1,0 +1,17 @@
+#DB_NAME="seminario"
+#DB_HOST="172.18.0.3"
+#DB_PORT="27017"
+#DB_USER="root"
+#DB_PASSWORD="example"
+#API_VERSION="api1.0"
+#PORT=8000
+
+DB_NAME="api_seminario_dev"
+DB_HOST="mongo"
+DB_PORT="27017"
+DB_USER="api_user"
+DB_PASSWORD="api1234"
+API_VERSION="api/1.0"
+PORT=8000
+BASE_URL="http://localhost:8000/api/api/1.0"
+UPLOADPATH="/opt/app/uploadfiles/"
