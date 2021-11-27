@@ -1,5 +1,6 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
+import cors from "cors";
 import mongoose, { Mongoose } from "mongoose";
 import fileUpload from "express-fileupload";
 import JsonWebToken from "./middleware/JsonWebToken";
@@ -15,6 +16,7 @@ import HorarioModule from "./modules/horariomodule/init";
 if (process.env.NODE_ENV == "development") {
   dotenv.config();
 }
+
 class App {
   private app: Express;
   private port: number;
@@ -35,6 +37,7 @@ class App {
     this.jsonwebtoken = new JsonWebToken(this.clientMongo);
   }
   private configure() {
+    this.app.use(cors({ origin: "http://localhost:3000" }));
     this.app.use(express.json());
     this.app.use(express.urlencoded());
     this.app.use(fileUpload({ limits: { fileSize: 20 * 1024 * 1024 } }));
