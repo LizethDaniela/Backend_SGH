@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { Mongoose } from "mongoose";
 import App from "../../../App";
-import { UserUpdate } from "../dto/UserUpdate.dto";
 import { createModel, IAvatar, IUser, User } from "../model/UserModel";
 import UserRepository from "../repositories/UserRepository";
 import sha1 from "sha1";
@@ -20,17 +19,17 @@ class UserController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { name, email, password } = request.body;
+    let { nombre, ap_paterno, ap_materno, ci, cargo, email, username, password, telefono } = request.body;
     //cifrar el password Importante
     password = sha1(password);
-    const result = await this.userRepository.create({ name, email, password });
+    const result = await this.userRepository.create({ nombre, ap_paterno, ap_materno, ci, cargo, email, username, password, telefono });
     response.status(201).json({ serverResponse: result });
   }
 
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { name, email }: IUser = request.body;
-    const result = await this.userRepository.update(id, { name, email });
+    const { nombre, ap_paterno, ap_materno, ci, cargo, email, username, telefono }: IUser = request.body;
+    const result = await this.userRepository.update(id, { nombre, ap_paterno, ap_materno, ci, cargo, email, username, telefono });
     response.status(201).json({ serverResponse: result });
   }
 

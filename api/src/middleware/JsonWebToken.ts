@@ -4,6 +4,7 @@ import { Mongoose } from "mongoose";
 import { IUser } from "../modules/usermodule/model/UserModel";
 import { createModel } from "../modules/usermodule/model/UserModel";
 import UserRepository from "../modules/usermodule/repositories/UserRepository";
+
 export interface DataUserToken {
   id: string;
   email: string;

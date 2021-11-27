@@ -1,4 +1,4 @@
-{
+{ 
   "compilerOptions": {
     "target": "es6",                                     
     "module": "none",                                
@@ -15,9 +15,9 @@
     "forceConsistentCasingInFileNames": true,            
     "strict": true,                                      
     "noImplicitAny": true,                            
-    "skipLibCheck": true                                 
+    "skipLibCheck": true,                                 
   },
   "include": [
     "src/**/*"
-  ]
+  ],
 }

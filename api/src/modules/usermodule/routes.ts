@@ -26,9 +26,9 @@ class Routes {
   }
   private configureRoutes() {
     this.app.route(`${this.rootPath}/${this.users}`).post(
-      (request: Request, response: Response, next: NextFunction) => {
+      /* (request: Request, response: Response, next: NextFunction) => {
         this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-      },
+      }, */
       (request: Request, response: Response) => {
         this.userController.create(request, response);
       }

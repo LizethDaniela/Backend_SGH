@@ -1,9 +1,15 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
-import mongoose, { mongo, Mongoose } from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 import fileUpload from "express-fileupload";
-import UserModule from "./modules/usermodule/init";
 import JsonWebToken from "./middleware/JsonWebToken";
+import UserModule from "./modules/usermodule/init";
+import SubjectModule from "./modules/materiamodule/init";
+import StudentModule from "./modules/studentusermodule/init";
+import TeacherModule from "./modules/teacherusermodule/init";
+import SemestreModule from "./modules/semestremodule/init";
+import AmbienteModule from "./modules/ambientemodule/init";
+import HorarioModule from "./modules/horariomodule/init";
 //import { textChangeRangeIsUnchanged } from "typescript";
 
 if (process.env.NODE_ENV == "development") {
@@ -53,6 +59,12 @@ class App {
   private startModules() {
     console.log("Load Modules!");
     new UserModule(`/${this.apiversion}`, ["user", "roles"], this);
+    new SubjectModule(`/${this.apiversion}`, this);
+    new StudentModule(`/${this.apiversion}`, this);
+    new TeacherModule(`/${this.apiversion}`, this);
+    new SemestreModule(`/${this.apiversion}`, this);
+    new AmbienteModule(`/${this.apiversion}`, this);
+    new HorarioModule(`/${this.apiversion}`, this);
   }
   public getApp(): Express {
     return this.app;
