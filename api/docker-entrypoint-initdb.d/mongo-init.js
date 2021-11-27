@@ -1,4 +1,5 @@
 print("Start ########################");
+
 db = db.getSiblingDB("api_seminario_dev");
 db.createUser({
   user: "api_user",
