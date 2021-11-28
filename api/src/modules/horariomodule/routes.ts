@@ -19,8 +19,8 @@ class Routes {
   private configureRoutes() {
     
     this.app
-      .route(`${this.rootPath}/horario`).post(
-        (request: Request, response: Response) => {
+      .route(`${this.rootPath}/horario`)
+      .post((request: Request, response: Response) => {
         this.horarioController.create(request, response);
       });
     this.app
@@ -28,13 +28,15 @@ class Routes {
       .get((request: Request, response: Response) => {
         this.horarioController.get(request, response);
       });
-    this.app.route(`${this.rootPath}/horario/:id`).get(
-        (request: Request, response: Response) => {
+    this.app
+      .route(`${this.rootPath}/horario/:id`)
+      .get((request: Request, response: Response) => {
           this.horarioController.getId(request, response);
         }
       );
-    this.app.route(`${this.rootPath}/horario/:id`).put(
-        (request: Request, response: Response) => {
+    this.app
+      .route(`${this.rootPath}/horario/:id`)
+      .put((request: Request, response: Response) => {
           this.horarioController.update(request, response);
         }
       );

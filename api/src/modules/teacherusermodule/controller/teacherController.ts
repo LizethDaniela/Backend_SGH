@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Mongoose } from "mongoose";
-import { createModel as createTeacherModel } from "../model/TeacherModel";
+import { createModel as createTeacherModel, ITeacher } from "../model/TeacherModel";
 import TeacherRepository from "../repositories/TeacherRepository";
 
 class TeacherController {
@@ -16,12 +16,24 @@ class TeacherController {
     const resultteacher = await this.teacherRepository.create({ nombre, ap_paterno, ap_materno, ci, ru, cargo, email, username, password, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo });
     response.status(201).json({ teacherResponse: resultteacher });
   }
-  public update(request: Request, response: Response) {}
+  public async update(request: Request, response: Response) {
+    const { id } = request.params;
+    const { nombre, ap_paterno, ap_materno, ci, ru, cargo, email, username, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo }: ITeacher = request.body;
+    const resultteacher = await this.teacherRepository.update(id, { nombre, ap_paterno, ap_materno, ci, ru, cargo, email, username, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo });
+    response.status(201).json({ teacherResponse: resultteacher });
+  }
   //method GET
   public async get(request: Request, response: Response) {
     const resultteacher = await this.teacherRepository.find({});
     response.status(201).json({ teacherResponse: resultteacher });
   }
+
+  public async getId(request: Request, response: Response) {
+    const { id } = request.params;
+    const resultteacher = await this.teacherRepository.findOne(id);
+    response.status(201).json({ teacherResponse: resultteacher });
+  }
+
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
     const resultteacher = await this.teacherRepository.delete(id);

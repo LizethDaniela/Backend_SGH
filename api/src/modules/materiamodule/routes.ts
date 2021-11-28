@@ -27,10 +27,22 @@ class Routes {
         this.materiasController.create(request, response);
       });
     this.app
-      .route(`${this.rootPath}/materias`)
-      .get((request: Request, response: Response) => {
+      .route(`${this.rootPath}/materias/:id`).put(
+        (request: Request, response: Response) => {
+          this.materiasController.update(request, response);
+        }
+      );
+    this.app
+      .route(`${this.rootPath}/materias`).get(
+        (request: Request, response: Response) => {
         this.materiasController.get(request, response);
       });
+    this.app
+      .route(`${this.rootPath}/materias/:id`).get(
+        (request: Request, response: Response) => {
+          this.materiasController.getId(request, response);
+        }
+      );
     this.app
       .route(`${this.rootPath}/materias/:id`)
       .delete((request: Request, response: Response) => {

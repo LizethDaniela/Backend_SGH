@@ -3,8 +3,6 @@ import { Mongoose } from "mongoose";
 import { createModel as createSemestreModel, ISemestre} from "../model/SemestreModel"
 import SemestreRepository from "../repositories/SemestreRepository";
 
-
-
 class SemestreController {
     private semestreRepository: SemestreRepository;
     constructor(mongoose: Mongoose) {

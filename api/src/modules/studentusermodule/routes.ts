@@ -30,6 +30,18 @@ class Routes {
       });
     this.app
       .route(`${this.rootPath}/student/:id`)
+      .get((request: Request, response: Response) => {
+          this.studentController.getId(request, response);
+        }
+      );
+    this.app
+      .route(`${this.rootPath}/student/:id`)
+      .put((request: Request, response: Response) => {
+          this.studentController.update(request, response);
+        }
+      );
+    this.app
+      .route(`${this.rootPath}/student/:id`)
       .delete((request: Request, response: Response) => {
       this.studentController.delete(request, response);
       });
