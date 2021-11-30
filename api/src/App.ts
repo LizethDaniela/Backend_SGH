@@ -11,6 +11,7 @@ import TeacherModule from "./modules/teacherusermodule/init";
 import SemestreModule from "./modules/semestremodule/init";
 import AmbienteModule from "./modules/ambientemodule/init";
 import HorarioModule from "./modules/horariomodule/init";
+import AmbientevirtualModule from "./modules/ambientevirtualmodule/init";
 //import { textChangeRangeIsUnchanged } from "typescript";
 
 if (process.env.NODE_ENV == "development") {
@@ -68,6 +69,7 @@ class App {
     new SemestreModule(`/${this.apiversion}`, this);
     new AmbienteModule(`/${this.apiversion}`, this);
     new HorarioModule(`/${this.apiversion}`, this);
+    new AmbientevirtualModule(`/${this.apiversion}`, this);
   }
   public getApp(): Express {
     return this.app;

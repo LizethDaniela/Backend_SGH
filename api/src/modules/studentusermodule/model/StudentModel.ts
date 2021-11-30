@@ -4,13 +4,11 @@ export interface IStudent {
     nombre?: string;
     ap_paterno?: string;
     ap_materno?: string;
-    ci?: string;
-    ru?: string;
+    ci?: string; // usuario
+    ru?: string; //password
     cargo?: string;
     semestre?: string;
     email?: string;
-    username?: string;
-    password?: string;
     fecha_nac?: string;
     telefono?: string;
 }
@@ -29,8 +27,6 @@ const StudentSchema = new Schema ({
     cargo: { type: String, required: true},
     semestre: { type: String, required: true },
     email: { type: String,  required: true, unique: true },
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true, unique: true },
     fecha_nac: { type: String, required: true },
     telefono: { type:  String, required: true},
     createAt: {type: Date, default: Date.now()},

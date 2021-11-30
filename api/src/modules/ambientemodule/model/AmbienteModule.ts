@@ -4,7 +4,6 @@ export interface IAmbiente {
     ambiente?: string;
     capacidad?: number;
     piso?: string;
-    tipo?: string;
     disponibilidad_tiempo?: string[];
 }
 
@@ -17,7 +16,6 @@ const AmbienteSchema = new Schema ({
     ambiente: { type: String, required: true },
     capacidad: { type: Number, required: true },
     piso: { type: String, required: true },
-    tipo: { type: String, required: true },
     disponibilidad_tiempo: { type: Array, required: false },
     createAt: { type: Date, default: Date.now() },
     updateAt: { type: Date },

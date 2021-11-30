@@ -11,15 +11,15 @@ class HorarioController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { disponibilidad_tiempo, dia, materia, docente, ambiente, piso, turno, semestre, grupo } = request.body;
-    const resulthorario = await this.horarioRepository.create({ disponibilidad_tiempo, dia, materia, docente, ambiente, piso, turno, semestre, grupo });
+    let { semestre, grupo, disponibilidad_tiempo, dia, materia, docente, ambiente, piso } = request.body;
+    const resulthorario = await this.horarioRepository.create({ semestre, grupo, disponibilidad_tiempo, dia, materia, docente, ambiente, piso });
     response.status(201).json({ horarioResponse: resulthorario });
   }
 
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { disponibilidad_tiempo, dia, materia, docente, ambiente, piso, turno, semestre, grupo }: IHorario = request.body;
-    const resulthorario = await this.horarioRepository.update(id, { disponibilidad_tiempo, dia, materia, docente, ambiente, piso, turno, semestre, grupo });
+    const { semestre, grupo, disponibilidad_tiempo, dia, materia, docente, ambiente, piso }: IHorario = request.body;
+    const resulthorario = await this.horarioRepository.update(id, { semestre, grupo, disponibilidad_tiempo, dia, materia, docente, ambiente, piso, });
     response.status(201).json({ horarioResponse: resulthorario });
   }
 

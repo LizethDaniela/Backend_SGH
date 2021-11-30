@@ -34,9 +34,9 @@ class Routes {
       }
     );
     this.app.route(`${this.rootPath}/${this.users}`).get(
-      ( request: Request, response: Response, next: NextFunction) => {
+      /* ( request: Request, response: Response, next: NextFunction) => {
         this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-      },
+      }, */
       (request: Request, response: Response) => {
         this.userController.get(request, response);
       }

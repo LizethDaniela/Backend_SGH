@@ -12,15 +12,15 @@ class StudentController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, username, password, fecha_nac, telefono } = request.body;
-    const resultestudent = await this.studentRepository.create({ nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, username, password, fecha_nac, telefono });
+    let { nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, fecha_nac, telefono } = request.body;
+    const resultestudent = await this.studentRepository.create({ nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, fecha_nac, telefono });
     response.status(201).json({ studentResponse: resultestudent });
   }
 
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, username, fecha_nac, telefono }: IStudent = request.body;
-    const resultestudent = await this.studentRepository.update(id, { nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, username, fecha_nac, telefono  });
+    const { nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, fecha_nac, telefono }: IStudent = request.body;
+    const resultestudent = await this.studentRepository.update(id, { nombre, ap_paterno, ap_materno, ci, ru, cargo, semestre, email, fecha_nac, telefono  });
     response.status(201).json({ studentResponse: resultestudent });
   }
 
