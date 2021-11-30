@@ -32,7 +32,7 @@ describe("Crud Operators of UserRespistory Class create", () => {
     const testData = await userRepo.findOne(expected.id);
     expect(expected.id).toBe(testData.id);
   });
-  test("Should be update an user in their params name, email", async () => {
+  /* test("Should be update an user in their params name, email", async () => {
     const userRepo = new UserRepository(createModel(mongoose));
     const updateUser = await userRepo.create(newUser);
     await userRepo.update(updateUser.id, {
@@ -41,7 +41,7 @@ describe("Crud Operators of UserRespistory Class create", () => {
     });
     const expected = await userRepo.findOne(updateUser.id);
     expect(expected.name).toBe("Update User");
-  });
+  }); */
   test("Should be delete user from collection users", async () => {
     const userRepo = new UserRepository(createModel(mongoose));
     const list: any = await userRepo.find({});
