@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 import { Mongoose } from "mongoose";
-import { createModel as createStudentModel, IStudent } from "../model/StudentModel";
+import { createModel as createEstudentModel, IStudent } from "../model/StudentModel";
 import StudentRepository from "../repositories/StudentRepository";
 
 class StudentController {
   private studentRepository: StudentRepository;
 
   constructor(mongoose: Mongoose) {
-    this.studentRepository = new StudentRepository(createStudentModel(mongoose));
+    this.studentRepository = new StudentRepository(createEstudentModel(mongoose));
   }
   //method POST
   public async create(request: Request, response: Response) {

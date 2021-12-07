@@ -5,6 +5,7 @@ import { createModel, IAvatar, IUser, User } from "../model/UserModel";
 import UserRepository from "../repositories/UserRepository";
 import sha1 from "sha1";
 import { UploadedFile } from "express-fileupload";
+
 class UserController {
   private userRepository: UserRepository<IUser>;
   private path: string;
@@ -19,17 +20,17 @@ class UserController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { nombre, ap_paterno, ap_materno, ci, cargo, email, username, password, telefono } = request.body;
+    let { nombre, ap_paterno, ap_materno, ci, cargo, email, username, password, fecha_nac, telefono } = request.body;
     //cifrar el password Importante
     password = sha1(password);
-    const result = await this.userRepository.create({ nombre, ap_paterno, ap_materno, ci, cargo, email, username, password, telefono });
+    const result = await this.userRepository.create({ nombre, ap_paterno, ap_materno, ci, cargo, email, username, password, fecha_nac, telefono });
     response.status(201).json({ serverResponse: result });
   }
 
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { nombre, ap_paterno, ap_materno, ci, cargo, email, username, telefono }: IUser = request.body;
-    const result = await this.userRepository.update(id, { nombre, ap_paterno, ap_materno, ci, cargo, email, username, telefono });
+    const { nombre, ap_paterno, ap_materno, ci, cargo, email, username, fecha_nac, telefono }: IUser = request.body;
+    const result = await this.userRepository.update(id, { nombre, ap_paterno, ap_materno, ci, cargo, email, username, fecha_nac, telefono });
     response.status(201).json({ serverResponse: result });
   }
 
@@ -49,6 +50,7 @@ class UserController {
     const result = await this.userRepository.delete(id);
     response.status(200).json({ serverResponse: result });
   }
+
   public async upload(request: Request, response: Response) {
     if (!request.files) {
       return response
@@ -87,6 +89,7 @@ class UserController {
       response.status(200).json({ serverResponse: update });
     });
   }
+
   public async showavatar(request: Request, response: Response) {
     const { id } = request.params;
     const user: IUser = await this.userRepository.findOne(id);
@@ -98,6 +101,7 @@ class UserController {
     const [avatar] = user.avatar;
     response.sendFile(avatar.path);
   }
+
   public async login(request: Request, response: Response) {
     let { email, password } = request.body;
     password = sha1(password);
@@ -115,10 +119,11 @@ class UserController {
     }
     response.status(300).json({ serverResponse: " Error in the credentials" });
   }
+
   public async getUserRoles(request: Request, response: Response) {
     const result = await this.userRepository.getUserRoles();
     response.status(200).json({ serverResponse: result });
   }
-  public singOut(request: Request, response: Response) {}
+
 }
 export default UserController;

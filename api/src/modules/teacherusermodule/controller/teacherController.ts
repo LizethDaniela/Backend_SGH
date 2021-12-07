@@ -12,14 +12,14 @@ class TeacherController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo } = request.body;
-    const resultteacher = await this.teacherRepository.create({ nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo });
+    let { nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo, disponibilidad_ocupada } = request.body;
+    const resultteacher = await this.teacherRepository.create({ nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo, disponibilidad_ocupada });
     response.status(201).json({ teacherResponse: resultteacher });
   }
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo }: ITeacher = request.body;
-    const resultteacher = await this.teacherRepository.update(id, { nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo });
+    const { nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo, disponibilidad_ocupada }: ITeacher = request.body;
+    const resultteacher = await this.teacherRepository.update(id, { nombre, ap_paterno, ap_materno, ci, cargo, email, fecha_nac, telefono, carga_horaria, disponibilidad_tiempo, disponibilidad_ocupada });
     response.status(201).json({ teacherResponse: resultteacher });
   }
   //method GET

@@ -28,6 +28,5 @@ class UserRepository<T> extends BaseRepository<IUser> {
     return user == null ? false : true;
   }
 
-  public singOut() {}
 }
 export default UserRepository;

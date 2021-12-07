@@ -21,29 +21,27 @@ class Routes {
     this.app
       .route(`${this.rootPath}/teacher`)
       .post((request: Request, response: Response) => {
-      this.teacherController.create(request, response);
+        this.teacherController.create(request, response);
       });
     this.app
       .route(`${this.rootPath}/teacher`)
       .get((request: Request, response: Response) => {
-      this.teacherController.get(request, response);
+        this.teacherController.get(request, response);
       });
     this.app
       .route(`${this.rootPath}/teacher/:id`)
       .get((request: Request, response: Response) => {
-          this.teacherController.getId(request, response);
-        }
-      );
+        this.teacherController.getId(request, response);
+      });
     this.app
       .route(`${this.rootPath}/teacher/:id`)
       .put((request: Request, response: Response) => {
-          this.teacherController.update(request, response);
-        }
-      );
+        this.teacherController.update(request, response);
+      });
     this.app
       .route(`${this.rootPath}/teacher/:id`)
       .delete((request: Request, response: Response) => {
-      this.teacherController.delete(request, response);
+        this.teacherController.delete(request, response);
       });
   }
 }

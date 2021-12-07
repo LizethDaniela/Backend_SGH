@@ -19,7 +19,7 @@ class Routes {
   private configureRoutes() {
     
     this.app
-      .route(`${this.rootPath}/materias`).post(
+      .route(`${this.rootPath}/materia`).post(
         /* (request: Request, response: Response, next: NextFunction) => {
           this.mainApp.getJsonWebToken().verifyToken(request, response, next);
         }, */
@@ -27,24 +27,24 @@ class Routes {
         this.materiasController.create(request, response);
       });
     this.app
-      .route(`${this.rootPath}/materias/:id`).put(
+      .route(`${this.rootPath}/materia/:id`).put(
         (request: Request, response: Response) => {
           this.materiasController.update(request, response);
         }
       );
     this.app
-      .route(`${this.rootPath}/materias`).get(
+      .route(`${this.rootPath}/materia`).get(
         (request: Request, response: Response) => {
         this.materiasController.get(request, response);
       });
     this.app
-      .route(`${this.rootPath}/materias/:id`).get(
+      .route(`${this.rootPath}/materia/:id`).get(
         (request: Request, response: Response) => {
           this.materiasController.getId(request, response);
         }
       );
     this.app
-      .route(`${this.rootPath}/materias/:id`)
+      .route(`${this.rootPath}/materia/:id`)
       .delete((request: Request, response: Response) => {
         this.materiasController.delete(request, response);
       });

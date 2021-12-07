@@ -2,9 +2,12 @@ import { Mongoose, Schema, Document } from "mongoose";
 
 export interface IAmbiente {
     ambiente?: string;
-    capacidad?: number;
     piso?: string;
+    capacidad?: number;
+    modalidad?: string;
+    link_clase?: string;
     disponibilidad_tiempo?: string[];
+    disponibilidad_ocupada?: string[];
 }
 
 export interface Ambiente extends Document, IAmbiente {
@@ -13,10 +16,13 @@ export interface Ambiente extends Document, IAmbiente {
 }
 
 const AmbienteSchema = new Schema ({
-    ambiente: { type: String, required: true },
-    capacidad: { type: Number, required: true },
+    ambiente: { type: String, required: true, unique: true },
     piso: { type: String, required: true },
+    capacidad: { type: Number, required: true },
+    modalidad: { type: String, required: true },
+    link_clase: { type: String, required: false },
     disponibilidad_tiempo: { type: Array, required: false },
+    disponibilidad_ocupada: { type: Array, required: false },
     createAt: { type: Date, default: Date.now() },
     updateAt: { type: Date },
 });

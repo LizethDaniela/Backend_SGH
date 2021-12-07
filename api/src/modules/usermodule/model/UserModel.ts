@@ -15,6 +15,7 @@ export interface IUser {
   email?: string;
   username?: string;
   password?: string;
+  fecha_nac?: string;
   telefono?: string;
   avatar?: Array<IAvatar>;
   roles?: Array<IRoles>;
@@ -44,6 +45,7 @@ const userSchema = new Schema({
   },
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true, unique: true },
+  fecha_nac: { type: String, required: true },
   telefono: { type:  String, required: true},
   roles: [{ type: Schema.Types.ObjectId, ref: "roles" }],
   avatar: { type: Array, required: false },

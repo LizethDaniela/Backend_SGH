@@ -19,8 +19,8 @@ class Routes {
   private configureRoutes() {
     
     this.app
-      .route(`${this.rootPath}/ambiente`).post(
-        (request: Request, response: Response) => {
+      .route(`${this.rootPath}/ambiente`)
+      .post((request: Request, response: Response) => {
         this.ambienteController.create(request, response);
       });
     this.app
@@ -28,16 +28,16 @@ class Routes {
       .get((request: Request, response: Response) => {
         this.ambienteController.get(request, response);
       });
-    this.app.route(`${this.rootPath}/ambiente/:id`).get(
-        (request: Request, response: Response) => {
+    this.app
+      .route(`${this.rootPath}/ambiente/:id`)
+      .get((request: Request, response: Response) => {
           this.ambienteController.getId(request, response);
-        }
-      );
-    this.app.route(`${this.rootPath}/ambiente/:id`).put(
-        (request: Request, response: Response) => {
+      });
+    this.app
+      .route(`${this.rootPath}/ambiente/:id`)
+      .put((request: Request, response: Response) => {
           this.ambienteController.update(request, response);
-        }
-      );
+      });
     this.app
       .route(`${this.rootPath}/ambiente/:id`)
       .delete((request: Request, response: Response) => {

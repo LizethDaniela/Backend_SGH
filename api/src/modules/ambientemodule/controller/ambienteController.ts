@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { Mongoose } from "mongoose";
 import { createModel as createAmbienteModel, IAmbiente } from "../model/AmbienteModule"
-import AmbienteRepository from "../repositories/SemestreRepository";
+import AmbienteRepository from "../repositories/AmbienteRepository";
 
 class AmbienteController {
     private ambienteRepository: AmbienteRepository;
@@ -11,15 +11,15 @@ class AmbienteController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { ambiente, capacidad, piso, tipo, disponibilidad_tiempo } = request.body;
-    const resultambiente = await this.ambienteRepository.create({ ambiente, capacidad, piso, disponibilidad_tiempo });
+    let { ambiente, piso, capacidad, modalidad, link_clase, disponibilidad_tiempo, disponibilidad_ocupada } = request.body;
+    const resultambiente = await this.ambienteRepository.create({ ambiente, piso, capacidad, modalidad, link_clase, disponibilidad_tiempo, disponibilidad_ocupada });
     response.status(201).json({ ambienteResponse: resultambiente });
   }
 
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { ambiente, capacidad, piso, disponibilidad_tiempo }: IAmbiente = request.body;
-    const resultambiente = await this.ambienteRepository.update(id, { ambiente, capacidad, piso, disponibilidad_tiempo });
+    const { ambiente, piso, capacidad, modalidad, link_clase, disponibilidad_tiempo, disponibilidad_ocupada }: IAmbiente = request.body;
+    const resultambiente = await this.ambienteRepository.update(id, { ambiente, piso, capacidad, modalidad, link_clase, disponibilidad_tiempo, disponibilidad_ocupada });
     response.status(201).json({ ambienteResponse: resultambiente });
   }
 

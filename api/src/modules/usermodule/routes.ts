@@ -50,9 +50,9 @@ class Routes {
       }
     );
     this.app.route(`${this.rootPath}/${this.users}/:id`).put(
-      (request: Request, response: Response, next: NextFunction) => {
+      /* (request: Request, response: Response, next: NextFunction) => {
         this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-      },
+      }, */
       (request: Request, response: Response) => {
         this.userController.update(request, response);
       }
@@ -119,18 +119,18 @@ class Routes {
     );
 
     this.app.route(`${this.rootPath}/roles/:id`).put(
-      (request: Request, response: Response, next: NextFunction) => {
+      /* (request: Request, response: Response, next: NextFunction) => {
         this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-      },
+      }, */
       (request: Request, response: Response) => {
         this.rolesController.update(request, response);
       }
     );
 
     this.app.route(`${this.rootPath}/roles/:id`).delete(
-      (request: Request, response: Response, next: NextFunction) => {
+      /* (request: Request, response: Response, next: NextFunction) => {
         this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-      },
+      }, */
       (request: Request, response: Response) => {
         this.rolesController.delete(request, response);
       }

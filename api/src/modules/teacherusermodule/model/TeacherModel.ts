@@ -11,6 +11,7 @@ export interface ITeacher {
     telefono?: string;
     carga_horaria?: string;
     disponibilidad_tiempo?: string[];
+    disponibilidad_ocupada?: string[];
 }
 
 export interface Teacher extends Document, ITeacher {
@@ -29,6 +30,7 @@ const TeacherSchema = new Schema ({
     telefono: { type:  String, required: true},
     carga_horaria: { type: String, required: true },
     disponibilidad_tiempo : { type: Array, required: false },
+    disponibilidad_ocupada: { type: Array, required: false },
     createAt: {type: Date, default: Date.now()},
     updateAt: { type: Date },
 });
