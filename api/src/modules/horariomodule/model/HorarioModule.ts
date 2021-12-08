@@ -9,7 +9,6 @@ export interface IHorario {
     docente?: string;
     ambiente?: string;
     piso?: string;
-
 }
 
 export interface Horario extends Document, IHorario {

@@ -11,15 +11,15 @@ class SemestreController {
   //method POST
   public async create(request: Request, response: Response) {
     //body
-    let { semestre, grupo, gestion, nivel_academico, carga_horaria_semana } = request.body;
-    const resultsemestre = await this.semestreRepository.create({ semestre, grupo, gestion, nivel_academico, carga_horaria_semana });
+    let { semestre, grupo, gestion, nivel_academico, disponibilidad_tiempo, disponibilidad_ocupada } = request.body;
+    const resultsemestre = await this.semestreRepository.create({ semestre, grupo, gestion, nivel_academico, disponibilidad_tiempo, disponibilidad_ocupada });
     response.status(201).json({ semestreResponse: resultsemestre });
   }
 
   public async update(request: Request, response: Response) {
     const { id } = request.params;
-    const { semestre, grupo, gestion, nivel_academico, carga_horaria_semana }: ISemestre = request.body;
-    const resultsemestre = await this.semestreRepository.update(id, { semestre, grupo, gestion, nivel_academico, carga_horaria_semana });
+    const { semestre, grupo, gestion, nivel_academico, disponibilidad_tiempo, disponibilidad_ocupada }: ISemestre = request.body;
+    const resultsemestre = await this.semestreRepository.update(id, { semestre, grupo, gestion, nivel_academico, disponibilidad_tiempo, disponibilidad_ocupada });
     response.status(201).json({ semestreResponse: resultsemestre });
   }
 

@@ -5,7 +5,8 @@ export interface ISemestre {
     grupo?: string;
     gestion?: string;
     nivel_academico?: number;
-    carga_horaria_semana?: string;
+    disponibilidad_tiempo?: string[];
+    disponibilidad_ocupada?: string[];
 }
 
 export interface Semestre extends Document, ISemestre {
@@ -18,7 +19,8 @@ const SemestreSchema = new Schema ({
     grupo: { type: String, required: true },
     gestion: { type: String, required: true },
     nivel_academico: { type: Number, required: true },
-    carga_horaria_semana: { type: String, required: true },
+    disponibilidad_tiempo: { type: Array, required: false },
+    disponibilidad_ocupada: { type: Array, required: false },
     createAt: { type: Date, default: Date.now() },
     updateAt: { type: Date },
 });
