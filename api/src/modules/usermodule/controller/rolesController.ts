@@ -22,13 +22,13 @@ class RolesController {
       method,
       url,
     });
-    response.status(201).json({ ServerResponse: responseData });
+    response.status(201).json({ serverResponse: responseData });
   }
   public async get(request: Request, response: Response) {
     console.log("Enter to endpoint");
     const list: IRoles[] = await this.rolesRepository.find({});
     console.log("out", list);
-    response.status(200).json({ ServerResponse: list });
+    response.status(200).json({ serverResponse: list });
   }
   public async getId(request: Request, response: Response) {
     const { id } = request.params;
