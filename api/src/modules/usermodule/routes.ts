@@ -3,6 +3,7 @@ import { Express, NextFunction, Request, Response } from "express";
 import UserController from "./controller/userController";
 import RolesController from "./controller/rolesController";
 
+
 class Routes {
   private rootPath: string;
   private mainApp: App;
@@ -100,9 +101,9 @@ class Routes {
     );
 
     this.app.route(`${this.rootPath}/roles/:id`).get(
-      (request: Request, response: Response, next: NextFunction) => {
+      /* (request: Request, response: Response, next: NextFunction) => {
         this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-      },
+      }, */
       (request: Request, response: Response) => {
         this.rolesController.getId(request, response);
       }

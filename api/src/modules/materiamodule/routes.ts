@@ -20,9 +20,9 @@ class Routes {
     
     this.app
       .route(`${this.rootPath}/materia`).post(
-        /* (request: Request, response: Response, next: NextFunction) => {
+        (request: Request, response: Response, next: NextFunction) => {
           this.mainApp.getJsonWebToken().verifyToken(request, response, next);
-        }, */
+        },
         (request: Request, response: Response) => {
         this.materiasController.create(request, response);
       });
