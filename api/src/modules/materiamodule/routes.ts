@@ -12,7 +12,7 @@ class Routes {
     this.rootPath = rootPath;
     this.mainApp = mainApp;
     this.app = this.mainApp.getApp();
-    this.materiasController = new MateriasController(mainApp.getClientMongoose());
+    this.materiasController = new MateriasController(mainApp);
 
     this.configureRoutes();
   }
@@ -47,6 +47,11 @@ class Routes {
       .route(`${this.rootPath}/materia/:id`)
       .delete((request: Request, response: Response) => {
         this.materiasController.delete(request, response);
+      });
+    this.app
+      .route(`${this.rootPath}/addmateria/:idTe/:idMat`)
+      .post((request: Request, response: Response) => {
+        this.materiasController.addTeacherMateria(request, response);
       });
   }
 }

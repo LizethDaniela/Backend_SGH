@@ -1,12 +1,18 @@
 import { Request, Response } from "express";
-import { Mongoose } from "mongoose";
+import App from "../../../App";
 import { createModel as createSubjectModel, ISubjects } from "../model/SubjectsModel";
+import { createModel as createTeacherModel } from "../../teacherusermodule/model/TeacherModel";
 import MateriasRepository from "../repositories/MateriasRepository";
 
 class MateriasController {
-  private materiasRepository: MateriasRepository;
-  constructor(mongoose: Mongoose) {
-    this.materiasRepository = new MateriasRepository(createSubjectModel(mongoose));
+  private app: App;
+  private materiasRepository: MateriasRepository<ISubjects>;
+  constructor(app: App) {
+    this.app = app;
+    this.materiasRepository = new MateriasRepository(
+      createSubjectModel(app.getClientMongoose()),
+      createTeacherModel(app.getClientMongoose())
+    );
   }
   //method POST
   public async create(request: Request, response: Response) {
@@ -23,7 +29,7 @@ class MateriasController {
   }
 
   public async get(request: Request, response: Response) {
-    const resultmat = await this.materiasRepository.find({});
+    const resultmat: ISubjects[] = await this.materiasRepository.find({});
     response.status(201).json({ materiaResponse: resultmat });
   }
 
@@ -37,6 +43,12 @@ class MateriasController {
     const { id } = request.params;
     const resultmat = await this.materiasRepository.delete(id);
     response.status(200).json({ materiaResponse: resultmat });
+  }
+
+  public async addTeacherMateria(request: Request, response: Response) {
+    const { idTe, idMat } = request.params;
+    const result = await this.materiasRepository.addMateriaTeacher(idTe, idMat);
+    response.status(201).json({ materiaResponse: result });
   }
 }
 export default MateriasController;

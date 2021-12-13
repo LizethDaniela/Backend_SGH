@@ -43,6 +43,11 @@ class Routes {
       .delete((request: Request, response: Response) => {
         this.teacherController.delete(request, response);
       });
+    this.app
+      .route(`${this.rootPath}/getteachermaterias`)
+      .get((request: Request, response: Response) => {
+        this.teacherController.getTeacherMaterias(request, response);
+      });
   }
 }
 export default Routes;

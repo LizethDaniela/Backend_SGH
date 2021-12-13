@@ -4,7 +4,7 @@ import { createModel as createTeacherModel, ITeacher } from "../model/TeacherMod
 import TeacherRepository from "../repositories/TeacherRepository";
 
 class TeacherController {
-  private teacherRepository: TeacherRepository;
+  private teacherRepository: TeacherRepository<ITeacher>;
 
   constructor(mongoose: Mongoose) {
     this.teacherRepository = new TeacherRepository(createTeacherModel(mongoose));
@@ -38,6 +38,11 @@ class TeacherController {
     const { id } = request.params;
     const resultteacher = await this.teacherRepository.delete(id);
     response.status(200).json({ teacherResponse: resultteacher });
+  }
+
+  public async getTeacherMaterias(request: Request, response: Response) {
+    const result = await this.teacherRepository.getTeacherMaterias();
+    response.status(200).json({ teacherResponse: result });
   }
 }
 export default TeacherController;

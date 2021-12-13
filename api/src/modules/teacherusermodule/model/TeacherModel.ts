@@ -1,4 +1,5 @@
 import { Mongoose, Schema, Document } from "mongoose";
+import { ISubjects } from "../../materiamodule/model/SubjectsModel";
 
 export interface ITeacher {
     nombre?: string;
@@ -12,6 +13,7 @@ export interface ITeacher {
     carga_horaria?: string;
     disponibilidad_tiempo?: string[];
     disponibilidad_ocupada?: string[];
+    materias?: Array<ISubjects>;
 }
 
 export interface Teacher extends Document, ITeacher {
@@ -31,6 +33,7 @@ const TeacherSchema = new Schema ({
     carga_horaria: { type: String, required: true },
     disponibilidad_tiempo : { type: Array, required: false },
     disponibilidad_ocupada: { type: Array, required: false },
+    materias: [{ type: Schema.Types.ObjectId, ref: "materias"}],
     createAt: {type: Date, default: Date.now()},
     updateAt: { type: Date },
 });
