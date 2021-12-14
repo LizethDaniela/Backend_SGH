@@ -29,7 +29,7 @@ class MateriasController {
   }
 
   public async get(request: Request, response: Response) {
-    const resultmat: ISubjects[] = await this.materiasRepository.find({});
+    const resultmat = await this.materiasRepository.find({});
     response.status(201).json({ materiaResponse: resultmat });
   }
 
@@ -49,6 +49,11 @@ class MateriasController {
     const { idTe, idMat } = request.params;
     const result = await this.materiasRepository.addMateriaTeacher(idTe, idMat);
     response.status(201).json({ materiaResponse: result });
+  }
+
+  public async getMateriaGrupos(request: Request, response: Response) {
+    const resultmatgrupo = await this.materiasRepository.getMateriaGrupos();
+    response.status(200).json({ matResponse: resultmatgrupo });
   }
 }
 export default MateriasController;

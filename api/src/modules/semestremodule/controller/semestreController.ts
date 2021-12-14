@@ -1,12 +1,18 @@
 import { Request, Response } from "express";
-import { Mongoose } from "mongoose";
-import { createModel as createSemestreModel, ISemestre} from "../model/SemestreModel"
+import App from "../../../App";
+import { createModel as createSemestreModel, ISemestre} from "../model/SemestreModel";
+import { createModel as createMateriaModel } from "../../materiamodule/model/SubjectsModel";
 import SemestreRepository from "../repositories/SemestreRepository";
 
 class SemestreController {
-    private semestreRepository: SemestreRepository;
-    constructor(mongoose: Mongoose) {
-      this.semestreRepository = new SemestreRepository(createSemestreModel(mongoose));
+    private app: App;
+    private semestreRepository: SemestreRepository<ISemestre>;
+    constructor(app: App) {
+      this.app = app;
+      this.semestreRepository = new SemestreRepository(
+        createSemestreModel(app.getClientMongoose()),
+        createMateriaModel(app.getClientMongoose())
+      );
     }
   //method POST
   public async create(request: Request, response: Response) {
@@ -38,6 +44,12 @@ class SemestreController {
     const { id } = request.params;
     const resultsemestre = await this.semestreRepository.delete(id);
     response.status(200).json({ semestreResponse: resultsemestre });
+  }
+
+  public async addMateriaGrupo(request: Request, response: Response) {
+    const { idMateria, idGrupo } = request.params;
+    const result = await this.semestreRepository.addGrupoMateria(idMateria, idGrupo);
+    response.status(201).json({ semestreResponse: result });
   }
 }
 export default SemestreController;

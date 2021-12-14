@@ -12,7 +12,7 @@ class Routes {
     this.rootPath = rootPath;
     this.mainApp = mainApp;
     this.app = this.mainApp.getApp();
-    this.semestreController = new SemestreController(mainApp.getClientMongoose());
+    this.semestreController = new SemestreController(mainApp);
 
     this.configureRoutes();
   }
@@ -42,6 +42,11 @@ class Routes {
       .route(`${this.rootPath}/semestre/:id`)
       .delete((request: Request, response: Response) => {
         this.semestreController.delete(request, response);
+      });
+    this.app
+      .route(`${this.rootPath}/addgrupo/:idMateria/:idGrupo`)
+      .post((request: Request, response: Response) => {
+        this.semestreController.addMateriaGrupo(request, response);
       });
   }
 }

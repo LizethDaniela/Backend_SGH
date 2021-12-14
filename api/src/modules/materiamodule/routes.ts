@@ -53,6 +53,11 @@ class Routes {
       .post((request: Request, response: Response) => {
         this.materiasController.addTeacherMateria(request, response);
       });
+    this.app
+      .route(`${this.rootPath}/getmatgrupos`)
+      .get((request: Request, response: Response) => {
+        this.materiasController.getMateriaGrupos(request, response);
+      });
   }
 }
 export default Routes;

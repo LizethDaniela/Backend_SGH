@@ -1,10 +1,12 @@
 import { Mongoose, Schema, Document } from "mongoose";
+import { ISemestre } from "../../semestremodule/model/SemestreModel";
 
 export interface ISubjects {
     subject?: string;
     sigla?: string;
     semestre?: string;
     horas_semana?: string;
+    grupos?: Array<ISemestre>;
 }
 
 export interface Subjects extends Document, ISubjects {
@@ -17,6 +19,7 @@ const MateriasSchema = new Schema ({
     sigla: { type: String, required: true, unique: true },
     semestre: { type: String, required: true },
     horas_semana: { type: String, required: true },
+    grupos: [{ type: Schema.Types.ObjectId, ref: "semestre" }],
     createAt: { type: Date, default: Date.now() },
     updateAt: { type: Date },
 });
