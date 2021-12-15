@@ -37,7 +37,7 @@ class HorarioController {
   public async delete(request: Request, response: Response) {
     const { id } = request.params;
     const resulthorario = await this.horarioRepository.delete(id);
-    response.status(200).json({ ambienteResponse: resulthorario });
+    response.status(200).json({ horarioResponse: resulthorario });
   }
 }
 export default HorarioController;
